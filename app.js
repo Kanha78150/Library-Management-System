@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
 const userRouter = require('./routes/user-router');
+const productRouter = require('./routes/product-router');
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/api', userRouter);
-
+app.use('/api', productRouter);
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

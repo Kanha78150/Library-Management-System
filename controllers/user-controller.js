@@ -2,6 +2,7 @@ const User = require('../models/user-model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const BlacklistToken = require('../models/blacklistToken-model');
+const Product = require('../models/book-model');
 
 
 
@@ -97,5 +98,25 @@ module.exports.getProfile = async (req, res) => {
         res.status(200).json({ message: 'Profile fetched successfully', user });
     } catch (error) {
         next(error);
+    }
+}
+
+// For all products
+module.exports.getProducts = async (req, res) => {
+    try {
+        const products = await Product.find({});
+        res.status(200).json({ message: 'Products fetched successfully', products });
+    } catch (error) {
+        next(error);
+    }
+}
+
+// For a specific product
+module.exports.getProductById = async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        res.status(200).json({ message: 'Product fetched successfully', product });
+    } catch (error) {
+        console.log(error);
     }
 }
