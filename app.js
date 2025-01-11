@@ -3,7 +3,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const userRouter = require('./routes/user-router');
 const productRouter = require('./routes/product-router');
-
+const cors = require('cors');
 dotenv.config();
 
 const app = express();
