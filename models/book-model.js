@@ -23,6 +23,14 @@ const bookSchema = new mongoose.Schema({
         ref: 'user',
         required: true
     },
+    genre: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: String,
+        required: true
+    },
     image: [{
         type: String,
     }]

@@ -3,6 +3,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const userRouter = require('./routes/user-router');
 const productRouter = require('./routes/product-router');
+const indexRouter = require('./routes/index-router');
 const cors = require('cors');
 dotenv.config();
 
@@ -16,9 +17,9 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'public/images/uploads')));
 
-
+app.use('/', indexRouter);
 app.use('/api', userRouter);
 app.use('/api', productRouter);
 // Start the server
