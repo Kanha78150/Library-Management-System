@@ -5,19 +5,26 @@ const userRouter = require('./routes/user-router');
 const productRouter = require('./routes/product-router');
 const indexRouter = require('./routes/index-router');
 const cors = require('cors');
+const cloudinary = require('cloudinary');
 dotenv.config();
 
 const app = express();
-
 app.use(cors());
 
 const connectDB = require('./config/mongodb-connection');
 connectDB();
 
+// Configuration
+cloudinary.config({
+    cloud_name: 'dlpckneac',
+    api_key: 'cloudinary_API_KEY',
+    api_secret: 'cloudinary_API_SECRET'
+});
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/images', express.static(path.join(__dirname, 'public/images/uploads')));
+app.use('/public', express.static(path.join(__dirname, 'public/images/uploads')));
 
 app.use('/', indexRouter);
 app.use('/api', userRouter);
